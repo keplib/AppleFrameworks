@@ -9,28 +9,29 @@ import SwiftUI
 
 struct FrameworkGridView: View {
     
+    @StateObject var viewModel = FrameworkGridViewModel()
+    
     let columns: [GridItem] = [GridItem(.flexible()),
-                                GridItem(.flexible()),
-                                 GridItem(.flexible())]
+                               GridItem(.flexible()),
+                               GridItem(.flexible())]
     let rows: [GridItem] = []
     
-        
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(MockData.frameworks) { framework in
-                        NavigationLink(value: framework) {
+                        NavigationLink(destination: FrameworkDetailView(framework: framework)) {
                             FrameworkTitleView(framework: framework)
                         }
                     }
-                    }
+                }
             }
             .navigationTitle("Frameworks")
-           
-            }
         }
-        
+    }
+    
     
 }
 

@@ -14,16 +14,40 @@ struct FrameworkDetailView: View {
     
     var body: some View {
         VStack {
-            Image(framework.imageName)
-                .resizable()
-                .frame(width: 40, height: 40)
-            Text(framework.name)
+            HStack {
+                
+                Spacer()
+                
+                Button(action: {
+                    
+                }, label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(Color(.label))
+                        .imageScale(.large)
+                        .frame(width: 44, height: 44)
+                })
+            }
+            .padding(.horizontal)
+            
+            Spacer()
+            
+            FrameworkTitleView(framework: framework)
             Text(framework.description)
+                .font(.body)
+                .padding()
+            
+            Spacer()
+            
+            Button(action: {
+                
+            }, label: {
+                AFButton(title: "Learn More")
+            })
         }
-        .padding(.horizontal)
+        
     }
 }
 
 #Preview {
-    FrameworkDetailView(framework: MockData.frameworks[0])
+    FrameworkDetailView(framework: MockData.sampleFramework)
 }
